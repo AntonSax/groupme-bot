@@ -8,6 +8,7 @@ import groupy
 import random
 import datetime
 import time
+import tweepy
 
 @csrf_exempt
 def groupme(request):
@@ -24,6 +25,26 @@ def groupme(request):
     def give_cookie(cur_bot, post_author, user):
         cur_bot.post(post_author + ' gives a cookie to ' + user)
 
+    def yeezy(cur_bot):
+        auth = tweepy.OAuthHandler(7LKNh9j6v5kIMc6QkI1p3FYTC, V79udZARDpnSUjY8lr9OiuK5vkUFYW8n0cbh7apU8jsEInepW4)
+
+        try:
+            redirect_url = auth.get_authorization_url()
+        except tweepy.TweepError:
+            cur_bot.post('Error! Failed to get request token. Please yell at Maneesh promptly.')
+
+        verifier = raw_input('Verifier:')
+
+        try:
+            auth.get_access_token(verifier)
+        except tweepy.TweepError:
+            cur_bot.post('Error! Failed to get access token. Please yell at Maneesh promptly.')
+
+        api = tweepy.API(auth)
+
+        stuff = api.user_timeline(screen_name = 'kaynewest', count = 100, include_rts = True)
+
+        cur_bot.post(status.user)
 
     def lenny_face(cur_bot):
         # dongerlist.com
