@@ -301,7 +301,7 @@ def groupme(request):
 
     def daze(cur_bot):
         today = datetime.date.today()
-        pats = datetime.date(2017, 3, 17)
+        pats = datetime.date(2018, 3, 17)
         difference = pats - today
         cur_bot.post("%s Daze until the BEST EVER ST. PATS!" % difference.days)
 
